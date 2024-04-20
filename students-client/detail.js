@@ -1,7 +1,6 @@
-import { getData } from "./get-data.js";
+import { fetchStudent } from "./rest-api-client.js";
 
-
-const renderStudent = (student) => {
+const renderStudent = (studentId, student) => {
 	document.querySelector("#student-detail-table").innerHTML = `
 		<tbody>
 			<tr>
@@ -24,10 +23,10 @@ const renderStudent = (student) => {
 	`;
 
 	const studentEditLink = document.querySelector("#student-edit-link");
+	studentEditLink.href = `edit.html?id=${studentId}`;
 	studentEditLink.innerHTML = `Edit ${student.firstName} ${student.lastName}`;
 };
 
 const studentId = new URLSearchParams(location.search).get("id");
-const studentRequest = await fetch(`http://localhost:8080/students/${studentId}`);
-const student = await studentRequest.json();
-renderStudent(student);
+const student = await fetchStudent(studentId);
+renderStudent(studentId, student);

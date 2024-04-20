@@ -47,3 +47,7 @@ nav a:first-child {
 button.student-delete {
 	margin-left: 0.5rem;
 }
+
+input {
+	width: 100%;
+}
