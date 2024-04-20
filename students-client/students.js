@@ -1,21 +1,25 @@
 import { getData } from "./get-data.js";
 
-const compileStudentInfo = (students) => {
-    return `<tr><td>${students.firstName} ${students.lastName}</td><td>${students.gender}</td><td>${students.house}</td><td>${students.year}</td></tr>`;
+const studentInfo = (student) => {
+    return `<tr><td>${student.firstName} ${student.lastName}</td><td>${student.gender}</td><td>${student.house}</td><td>${student.year}</td></tr>`;
+};
+
+const chartHeader = () => {
+    return "<thead><tr><th>Name</th><th>Gender</th><th>House</th><th>Year</th></tr></thead>";   
 }
-
-
 
 const studentsChart = document.querySelector("#students-chart")
 
 let students;
 
 try {
+    
     students = await getData("http://localhost:8080/students/");
+    studentsChart.innerHTML = chartHeader() + students.map((student) => studentInfo(student)).join("");
 
     //console.log(students)
     //console.log(compileStudentInfo(students[0]))
-//fce
+
 } catch (error) {
     console.log(error);
 }
