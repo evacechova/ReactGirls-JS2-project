@@ -1,14 +1,16 @@
 import { getData } from "./get-data.js";
 
 const studentInfo = (student) => {
-    return `<tr><td>${student.firstName} ${student.lastName}</td><td>${student.gender}</td><td>${student.house}</td><td>${student.year}</td></tr>`;
+    return `<tr><td><a href="detail.html?id=${student.id}">${student.firstName} ${student.lastName}</a></td><td>${student.gender}</td><td>${student.house}</td><td>${student.year}</td><td>
+    <a href="edit.html">Edit</a> <button type="button" class="btn btn-danger student-delete">Delete</button>
+</td></tr>`;
 };
 
 const chartHeader = () => {
     return "<thead><tr><th>Name</th><th>Gender</th><th>House</th><th>Year</th></tr></thead>";   
 }
 
-const studentsChart = document.querySelector("#students-chart")
+const studentsChart = document.querySelector("#students-chart");
 
 let students;
 
@@ -22,4 +24,4 @@ try {
 
 } catch (error) {
     console.log(error);
-}
+};
